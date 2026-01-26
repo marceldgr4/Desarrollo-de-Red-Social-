@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: social-network-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres123
+      POSTGRES_DB: social_network
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - social-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  auth-service:
+    build:
+      context: ./backend/auth-service
+      dockerfile: Dockerfile
+    container_name: auth-service
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres123@postgres:5432/social_network
+      JWT_SECRET: mi_secreto_super_seguro_2024
+      PORT: 3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - social-network
+    restart: unless-stopped
+
+  posts-service:
+    build:
+      context: ./backend/posts-service
+      dockerfile: Dockerfile
+    container_name: posts-service
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres123@postgres:5432/social_network
+      JWT_SECRET: mi_secreto_super_seguro_2024
+      PORT: 3002
+    ports:
+      - "3002:3002"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - social-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "3000:3000"
+    environment:
+      REACT_APP_AUTH_SERVICE_URL: http://localhost:3001
+      REACT_APP_POSTS_SERVICE_URL: http://localhost:3002
+    depends_on:
+      - auth-service
+      - posts-service
+    networks:
+      - social-network
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+
+networks:
+  social-network:
+    driver: bridge
