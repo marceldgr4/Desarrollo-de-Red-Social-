@@ -1,53 +1,56 @@
 #!/bin/bash
 
-echo "🚀 Starting Social Network Application..."
+echo "Starting the Social Network application"
 echo ""
 
-# Check if Docker is installed
-if ! command -v docker &> /dev/null; then
-    echo "❌ Docker is not installed. Please install Docker first."
+# Check Docker installation
+if ! command -v docker >/dev/null 2>&1; then
+    echo "Docker is not installed."
+    echo "Please install Docker before running this script."
     exit 1
 fi
 
-# Check if Docker Compose is installed
-if ! command -v docker-compose &> /dev/null; then
-    echo "❌ Docker Compose is not installed. Please install Docker Compose first."
+# Check Docker Compose installation
+if ! command -v docker-compose >/dev/null 2>&1; then
+    echo "Docker Compose is not installed."
+    echo "Please install Docker Compose before running this script."
     exit 1
 fi
 
-echo "✅ Docker and Docker Compose are installed"
+echo "Docker and Docker Compose are available."
 echo ""
 
-# Stop any existing containers
-echo "🛑 Stopping any existing containers..."
+# Stop running containers if they exist
+echo "Stopping existing containers..."
 docker-compose down
 
 echo ""
-echo "🏗️  Building and starting all services..."
-echo "This may take a few minutes on first run..."
+echo "Building and starting the services."
+echo "This may take a few minutes the first time."
 echo ""
 
-# Build and start all services
+# Start services
 docker-compose up --build -d
 
 echo ""
-echo "⏳ Waiting for services to be ready..."
+echo "Waiting for services to start..."
 sleep 10
 
 echo ""
-echo "🎉 Application is ready!"
+echo "Application started successfully."
 echo ""
-echo "📍 Access the application at:"
-echo "   Frontend:      http://localhost:3000"
-echo "   Auth Service:  http://localhost:3001"
-echo "   Posts Service: http://localhost:3002"
-echo "   Swagger Auth:  http://localhost:3001/api-docs"
-echo "   Swagger Posts: http://localhost:3002/api-docs"
+echo "Services available at:"
+echo "  Frontend:      http://localhost:3000"
+echo "  Auth Service:  http://localhost:3001"
+echo "  Posts Service: http://localhost:3002"
+echo "  Swagger Auth:  http://localhost:3001/api-docs"
+echo "  Swagger Posts: http://localhost:3002/api-docs"
 echo ""
-echo "🔐 Test Credentials:"
-echo "   Username: user1"
-echo "   Password: password123"
+echo "Test user:"
+echo "  Username: user1"
+echo "  Password: password123"
 echo ""
-echo "📋 View logs: docker-compose logs -f"
-echo "🛑 Stop app:  docker-compose down"
+echo "Helpful commands:"
+echo "  docker-compose logs -f"
+echo "  docker-compose down"
 echo ""
