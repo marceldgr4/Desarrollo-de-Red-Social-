@@ -24,5 +24,5 @@ RUN npm run build
 
 EXPOSE 3002
 
-
-CMD ["sh", "-c", "npx prisma migrate resolve --applied 20240101000000_init || true && npx prisma migrate deploy && npm start"]
+# Start command
+CMD ["sh", "-c", "npx prisma db push --accept-data-loss && npm start"]
