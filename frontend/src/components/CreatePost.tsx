@@ -49,27 +49,27 @@ const CreatePost: React.FC = () => {
 
   return (
     <div className="card">
-      <h2> Create Post</h2>
+      <h2> Crear Post</h2>
       <form onSubmit={handleSubmit}>
         {error && <div className="error-message">{error}</div>}
         {success && (
           <div className="success-message">
-            Post created successfully! 
+            Post creado exitosamente! 
           </div>
         )}
 
         <div className="form-group">
-          <label htmlFor="message">What's on your mind?</label>
+          <label htmlFor="message">¿Qué hay en tu mente?</label>
           <textarea
             id="message"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
-            placeholder="Share your thoughts..."
+            placeholder="Comparte tus pensamientos..."
             required
             maxLength={500}
           />
           <small style={{ color: '#999', fontSize: '0.9rem' }}>
-            {message.length}/500 characters
+            {message.length}/500 caracteres
           </small>
         </div>
 
@@ -78,7 +78,7 @@ const CreatePost: React.FC = () => {
           className="btn btn-primary"
           disabled={loading || !message.trim()}
         >
-          {loading ? 'Posting...' : 'Post'}
+          {loading ? 'Publicando...' : 'Publicar'}
         </button>
       </form>
     </div>
