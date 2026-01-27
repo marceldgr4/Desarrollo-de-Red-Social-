@@ -1,6 +1,7 @@
 # Red Social - Aplicación Full Stack
 
-Red social desarrollada con arquitectura de microservicios usando Node.js, Express, TypeScript, React y PostgreSQL.
+Este proyecto es una red social básica desarrollada como prueba técnica, usando una arquitectura de microservicios con Node.js, React y PostgreSQL.
+La aplicación permite autenticación de usuarios, creación de publicaciones y visualización de un feed simple.
 
 ## Tabla de Contenidos
 
@@ -16,44 +17,42 @@ Red social desarrollada con arquitectura de microservicios usando Node.js, Expre
 
 ## Características
 
-- Autenticación de usuarios con JWT
-- Crear publicaciones
-- Visualizar feed de publicaciones
-- Arquitectura de microservicios
-- TypeScript en Frontend y Backend
-- Dockerización completa
-- Documentación Swagger
-- Seeder de datos de prueba
-- Manejo de estado con Zustand
-- ORM Prisma para PostgreSQL
+- Autenticación de usuarios usando JWT
+- Creación y visualización de publicaciones
+- Arquitectura basada en microservicios
+- Uso de TypeScript en frontend y backend
+- Servicios dockerizados
+- Documentación de APIs con Swagger
+- Datos de prueba generados automáticamente
+- Manejo de estado en frontend con Zustand
+- Base de datos PostgreSQL usando Prisma ORM
 
 ## Tecnologías Utilizadas
 
 ### Backend
 
-- Node.js - Runtime de JavaScript
-- Express.js - Framework web
-- TypeScript - Tipado estático
-- Prisma - ORM para PostgreSQL
-- JWT - Autenticación
-- bcryptjs - Encriptación de contraseñas
-- Swagger - Documentación API
+- Node.js
+- Express
+- TypeScript
+- Prisma ORM
+- JWT para autenticación
+- Swagger para documentación
 
 ### Frontend
 
-- React 18 - Librería UI
-- TypeScript - Tipado estático
-- Zustand - Manejo de estado
-- Axios - Cliente HTTP
+- React 18
+- TypeScript
+- Zustand
+- Axios
 
 ### Base de Datos
 
-- PostgreSQL - Base de datos relacional
+- PostgreSQL
 
 ### DevOps
 
-- Docker - Contenedorización
-- Docker Compose - Orquestación de contenedores
+- Docker
+- Docker Compose
 
 ## Arquitectura
 
@@ -79,7 +78,7 @@ Red social desarrollada con arquitectura de microservicios usando Node.js, Expre
 - [Node.js](https://nodejs.org/) (v18+) - Solo para desarrollo local
 - [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/) - Solo para desarrollo local
 
-## 🔧 Instalación
+## Instalación
 
 ### Opción 1: Usando Docker (Recomendado)
 
@@ -158,12 +157,12 @@ El sistema incluye 3 usuarios de prueba:
 
 ### Flujo de Usuario
 
-1. **Login**: Inicia sesión con cualquiera de las credenciales de prueba
-2. **Ver Posts**: Automáticamente verás el feed con las publicaciones
-3. **Crear Post**: Escribe un mensaje y presiona "Post"
-4. **Logout**: Cierra sesión desde el botón en el header
+1. **Iniciar sesión con un usuario de prueba**
+2. **Ver el feed de publicaciones**
+3. **Crear una nueva publicación**
+4. **Cerrar sesión**
 
-## API Documentation
+## Documentación de la API
 
 ### Auth Service (Port 3001)
 
@@ -184,7 +183,7 @@ Autentica un usuario y retorna un token JWT.
 
 ```json
 {
-  "message": "Login successful",
+  "message": "Login exitoso",
   "token": "eyJhbGciOiJIUzI1NiIs...",
   "user": {
     "id": 1,
@@ -407,23 +406,11 @@ REACT_APP_POSTS_SERVICE_URL=http://localhost:3002
 
 ## Notas Importantes
 
-1. **Primera ejecución**: La primera vez que ejecutes `docker-compose up` puede tardar varios minutos mientras se descargan las imágenes y se construyen los contenedores.
+1. **Primera ejecución**: La primera vez que ejecutes `docker-compose up` puede tardar varios minutos.
 
-2. **Seeders**: Los usuarios de prueba se crean automáticamente al iniciar el auth-service.
+2. **JWT Secret**: En producción, asegúrate de usar un secreto fuerte y único.
 
-3. **JWT Secret**: En producción, asegúrate de usar un secreto fuerte y único.
-
-4. **CORS**: Los servicios están configurados para aceptar requests desde cualquier origen en desarrollo. En producción, limita los orígenes permitidos.
-
-## Contribuciones
-
-Las contribuciones son bienvenidas. Por favor:
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+3. **CORS**: La configuración actual de CORS está pensada solo para desarrollo
 
 ## Licencia
 
@@ -433,9 +420,5 @@ Este proyecto fue desarrollado como prueba técnica.
 
 Desarrollado como parte de una prueba técnica Full Stack.
 Marcel Diaz Granados Robayo
-
-## Soporte
-
-Para preguntas o problemas, por favor abre un issue en el repositorio.
 
 ---
