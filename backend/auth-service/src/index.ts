@@ -8,10 +8,15 @@ import authRoutes from './routes/auth.routes';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = Number(process.env.PORT) || 3001;
 
-// Middleware
-app.use(cors());
+// CORS Configuration - Allow requests from frontend
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:3001'],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 app.use(express.json());
 
 // Swagger configuration
@@ -53,7 +58,9 @@ app.get('/health', (req, res) => {
   res.json({ status: 'OK', service: 'auth-service' });
 });
 
-app.listen(PORT, () => {
+// Listen on 0.0.0.0 to accept connections from outside the container
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Auth Service running on port ${PORT}`);
   console.log(`📚 Swagger documentation available at http://localhost:${PORT}/api-docs`);
+  console.log(`🌐 Server listening on 0.0.0.0:${PORT} (accessible via Docker port mapping)`);
 });
