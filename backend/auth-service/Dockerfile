@@ -25,4 +25,4 @@ RUN npm run build
 EXPOSE 3001
 
 # Start command
-CMD ["sh", "-c", "npx prisma migrate deploy && npm run seed && npm start"]
+CMD ["sh", "-c", "npx prisma migrate resolve --applied 20260126230505_init || true && npx prisma migrate deploy && npm run seed && npm start"]
