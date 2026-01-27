@@ -9,7 +9,7 @@ const App: React.FC = () => {
   const { token, logout, user } = useAuthStore();
 
   useEffect(() => {
-    // Check if token exists in localStorage on mount
+  
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
       useAuthStore.getState().setToken(storedToken);
@@ -24,11 +24,11 @@ const App: React.FC = () => {
     <div className="app">
       <header className="app-header">
         <div className="container">
-          <h1>🌐 Social Network</h1>
+          <h1>Red Social</h1>
           <div className="user-info">
-            <span>Welcome, <strong>{user?.username}</strong>!</span>
+            <span>Bienvenido, <strong>{user?.username}</strong>!</span>
             <button onClick={logout} className="btn btn-secondary">
-              Logout
+              Salir
             </button>
           </div>
         </div>
@@ -42,7 +42,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="app-footer">
-        <p>© 2024 Social Network - Full Stack Technical Test</p>
+        <p>© 2026 Red Social - Full Stack</p>
       </footer>
     </div>
   );

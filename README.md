@@ -1,8 +1,8 @@
-# 🌐 Social Network - Full Stack Application
+# Red Social - Aplicación Full Stack
 
 Red social desarrollada con arquitectura de microservicios usando Node.js, Express, TypeScript, React y PostgreSQL.
 
-## 📋 Tabla de Contenidos
+## Tabla de Contenidos
 
 - [Características](#características)
 - [Tecnologías Utilizadas](#tecnologías-utilizadas)
@@ -14,44 +14,48 @@ Red social desarrollada con arquitectura de microservicios usando Node.js, Expre
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [Testing](#testing)
 
-## ✨ Características
+## Características
 
-- ✅ Autenticación de usuarios con JWT
-- ✅ Crear publicaciones
-- ✅ Visualizar feed de publicaciones
-- ✅ Arquitectura de microservicios
-- ✅ TypeScript en Frontend y Backend
-- ✅ Dockerización completa
-- ✅ Documentación Swagger
-- ✅ Seeder de datos de prueba
-- ✅ Manejo de estado con Zustand
-- ✅ ORM Prisma para PostgreSQL
+- Autenticación de usuarios con JWT
+- Crear publicaciones
+- Visualizar feed de publicaciones
+- Arquitectura de microservicios
+- TypeScript en Frontend y Backend
+- Dockerización completa
+- Documentación Swagger
+- Seeder de datos de prueba
+- Manejo de estado con Zustand
+- ORM Prisma para PostgreSQL
 
-## 🚀 Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 ### Backend
-- **Node.js** - Runtime de JavaScript
-- **Express.js** - Framework web
-- **TypeScript** - Tipado estático
-- **Prisma** - ORM para PostgreSQL
-- **JWT** - Autenticación
-- **bcryptjs** - Encriptación de contraseñas
-- **Swagger** - Documentación API
+
+- Node.js - Runtime de JavaScript
+- Express.js - Framework web
+- TypeScript - Tipado estático
+- Prisma - ORM para PostgreSQL
+- JWT - Autenticación
+- bcryptjs - Encriptación de contraseñas
+- Swagger - Documentación API
 
 ### Frontend
-- **React 18** - Librería UI
-- **TypeScript** - Tipado estático
-- **Zustand** - Manejo de estado
-- **Axios** - Cliente HTTP
+
+- React 18 - Librería UI
+- TypeScript - Tipado estático
+- Zustand - Manejo de estado
+- Axios - Cliente HTTP
 
 ### Base de Datos
-- **PostgreSQL** - Base de datos relacional
+
+- PostgreSQL - Base de datos relacional
 
 ### DevOps
-- **Docker** - Contenedorización
-- **Docker Compose** - Orquestación de contenedores
 
-## 🏗️ Arquitectura
+- Docker - Contenedorización
+- Docker Compose - Orquestación de contenedores
+
+## Arquitectura
 
 ```
 ┌─────────────────┐
@@ -68,7 +72,7 @@ Red social desarrollada con arquitectura de microservicios usando Node.js, Expre
 └─────────────────┘  └───────────────┘  └───────────────┘
 ```
 
-## 📦 Requisitos Previos
+## Requisitos Previos
 
 - [Docker](https://docs.docker.com/get-docker/) (v20.10+)
 - [Docker Compose](https://docs.docker.com/compose/install/) (v2.0+)
@@ -80,17 +84,20 @@ Red social desarrollada con arquitectura de microservicios usando Node.js, Expre
 ### Opción 1: Usando Docker (Recomendado)
 
 1. **Clonar el repositorio**
+
 ```bash
 git clone <repository-url>
 cd social-network-fullstack
 ```
 
 2. **Levantar todos los servicios**
+
 ```bash
 docker-compose up --build
 ```
 
 Este comando:
+
 - Construirá las imágenes Docker
 - Iniciará PostgreSQL
 - Ejecutará las migraciones de Prisma
@@ -99,6 +106,7 @@ Este comando:
 - Iniciará el frontend
 
 3. **Acceder a la aplicación**
+
 - Frontend: http://localhost:3000
 - Auth Service: http://localhost:3001
 - Posts Service: http://localhost:3002
@@ -136,19 +144,17 @@ npm install
 npm start
 ```
 
-## 🎯 Uso
+## Uso
 
 ### Credenciales de Prueba
 
-El sistema incluye 5 usuarios de prueba:
+El sistema incluye 3 usuarios de prueba:
 
-| Usuario | Contraseña |
-|---------|-----------|
+| Usuario | Contraseña  |
+| ------- | ----------- |
 | user1   | password123 |
 | user2   | password123 |
 | user3   | password123 |
-| user4   | password123 |
-| user5   | password123 |
 
 ### Flujo de Usuario
 
@@ -157,14 +163,16 @@ El sistema incluye 5 usuarios de prueba:
 3. **Crear Post**: Escribe un mensaje y presiona "Post"
 4. **Logout**: Cierra sesión desde el botón en el header
 
-## 📚 API Documentation
+## API Documentation
 
 ### Auth Service (Port 3001)
 
 #### POST /api/auth/login
+
 Autentica un usuario y retorna un token JWT.
 
 **Request Body:**
+
 ```json
 {
   "username": "user1",
@@ -173,6 +181,7 @@ Autentica un usuario y retorna un token JWT.
 ```
 
 **Response:**
+
 ```json
 {
   "message": "Login successful",
@@ -188,19 +197,22 @@ Autentica un usuario y retorna un token JWT.
 ### Posts Service (Port 3002)
 
 #### GET /api/posts
+
 Obtiene todas las publicaciones.
 
 **Headers:**
+
 ```
 Authorization: Bearer <token>
 ```
 
 **Response:**
+
 ```json
 [
   {
     "id": 1,
-    "message": "Hello! This is my first post...",
+    "message": "Hola! Este es mi primer post...",
     "createdAt": "2024-01-26T10:00:00.000Z",
     "user": {
       "id": 1,
@@ -212,27 +224,31 @@ Authorization: Bearer <token>
 ```
 
 #### POST /api/posts
+
 Crea una nueva publicación.
 
 **Headers:**
+
 ```
 Authorization: Bearer <token>
 ```
 
 **Request Body:**
+
 ```json
 {
-  "message": "This is my new post!"
+  "message": "Nuevo post!"
 }
 ```
 
 **Response:**
+
 ```json
 {
-  "message": "Post created successfully",
+  "message": "Post creado exitosamente",
   "post": {
     "id": 6,
-    "message": "This is my new post!",
+    "message": "Nuevo post!",
     "userId": 1,
     "createdAt": "2024-01-26T10:30:00.000Z",
     "user": {
@@ -244,7 +260,7 @@ Authorization: Bearer <token>
 }
 ```
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 social-network-fullstack/
@@ -306,7 +322,7 @@ social-network-fullstack/
 └── README.md
 ```
 
-## 🧪 Testing
+## Testing
 
 ### Ejecutar Tests
 
@@ -324,7 +340,7 @@ cd frontend
 npm test
 ```
 
-## 🛠️ Comandos Útiles
+## Comandos Útiles
 
 ### Docker
 
@@ -364,9 +380,10 @@ npx prisma migrate reset
 npx prisma studio
 ```
 
-## 🔐 Variables de Entorno
+## Variables de Entorno
 
 ### Auth Service (.env)
+
 ```env
 DATABASE_URL="postgresql://postgres:postgres123@postgres:5432/social_network"
 JWT_SECRET="mi_secreto_super_seguro_2024"
@@ -374,6 +391,7 @@ PORT=3001
 ```
 
 ### Posts Service (.env)
+
 ```env
 DATABASE_URL="postgresql://postgres:postgres123@postgres:5432/social_network"
 JWT_SECRET="mi_secreto_super_seguro_2024"
@@ -381,12 +399,13 @@ PORT=3002
 ```
 
 ### Frontend (.env)
+
 ```env
 REACT_APP_AUTH_SERVICE_URL=http://localhost:3001
 REACT_APP_POSTS_SERVICE_URL=http://localhost:3002
 ```
 
-## 📝 Notas Importantes
+## Notas Importantes
 
 1. **Primera ejecución**: La primera vez que ejecutes `docker-compose up` puede tardar varios minutos mientras se descargan las imágenes y se construyen los contenedores.
 
@@ -396,7 +415,7 @@ REACT_APP_POSTS_SERVICE_URL=http://localhost:3002
 
 4. **CORS**: Los servicios están configurados para aceptar requests desde cualquier origen en desarrollo. En producción, limita los orígenes permitidos.
 
-## 🤝 Contribuciones
+## Contribuciones
 
 Las contribuciones son bienvenidas. Por favor:
 
@@ -406,18 +425,17 @@ Las contribuciones son bienvenidas. Por favor:
 4. Push a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto fue desarrollado como prueba técnica.
 
-## 👨‍💻 Autor
+## Autor
 
 Desarrollado como parte de una prueba técnica Full Stack.
+Marcel Diaz Granados Robayo
 
-## 📞 Soporte
+## Soporte
 
 Para preguntas o problemas, por favor abre un issue en el repositorio.
 
 ---
-
-⭐ Si te gustó este proyecto, dale una estrella en GitHub!

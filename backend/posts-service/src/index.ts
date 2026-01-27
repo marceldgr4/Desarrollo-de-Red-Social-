@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 const PORT = Number(process.env.PORT) || 3002;
 
-// CORS Configuration - Allow requests from frontend
+
 app.use(cors({
   origin: ['http://localhost:3000', 'http://localhost:3002'],
   credentials: true,
@@ -19,7 +19,7 @@ app.use(cors({
 }));
 app.use(express.json());
 
-// Swagger configuration
+
 const swaggerOptions = {
   definition: {
     openapi: '3.0.0',
@@ -50,17 +50,17 @@ const swaggerOptions = {
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// Routes
+
 app.use('/api/posts', postRoutes);
 
-// Health check
+
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', service: 'posts-service' });
 });
 
-// Listen on 0.0.0.0 to accept connections from outside the container
+
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Posts Service running on port ${PORT}`);
-  console.log(`📚 Swagger documentation available at http://localhost:${PORT}/api-docs`);
-  console.log(`🌐 Server listening on 0.0.0.0:${PORT} (accessible via Docker port mapping)`);
+  console.log(` Posts Service running on port ${PORT}`);
+  console.log(` Swagger documentation available at http://localhost:${PORT}/api-docs`);
+  console.log(` Server listening on 0.0.0.0:${PORT} (accessible via Docker port mapping)`);
 });

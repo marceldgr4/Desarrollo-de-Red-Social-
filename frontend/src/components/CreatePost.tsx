@@ -49,12 +49,12 @@ const CreatePost: React.FC = () => {
 
   return (
     <div className="card">
-      <h2>✍️ Create Post</h2>
+      <h2> Create Post</h2>
       <form onSubmit={handleSubmit}>
         {error && <div className="error-message">{error}</div>}
         {success && (
           <div className="success-message">
-            Post created successfully! 🎉
+            Post created successfully! 
           </div>
         )}
 

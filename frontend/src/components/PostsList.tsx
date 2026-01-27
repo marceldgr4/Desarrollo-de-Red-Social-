@@ -49,12 +49,11 @@ const PostsList: React.FC = () => {
     });
   };
 
-  // Function to be called when a new post is created
+ 
   const refreshPosts = () => {
     fetchPosts();
   };
 
-  // Expose refresh function to parent
   React.useEffect(() => {
     (window as any).refreshPosts = refreshPosts;
     return () => {
@@ -65,7 +64,7 @@ const PostsList: React.FC = () => {
   if (loading) {
     return (
       <div className="card">
-        <div className="loading">Loading posts...</div>
+        <div className="loading">Cargando posts...</div>
       </div>
     );
   }
@@ -75,7 +74,7 @@ const PostsList: React.FC = () => {
       <div className="card">
         <div className="error-message">{error}</div>
         <button onClick={fetchPosts} className="btn btn-primary">
-          Retry
+          Intentar de nuevo
         </button>
       </div>
     );
@@ -83,11 +82,11 @@ const PostsList: React.FC = () => {
 
   return (
     <div className="card">
-      <h2>📱 Feed</h2>
+      <h2>Feed</h2>
       {posts.length === 0 ? (
         <div className="empty-state">
-          <div className="empty-state-icon">📭</div>
-          <p>No posts yet. Be the first to post something!</p>
+          <div className="empty-state-icon"></div>
+          <p>No hay posts aun. Ser el primero en publicar algo!</p>
         </div>
       ) : (
         <div className="posts-list">

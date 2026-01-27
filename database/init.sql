@@ -1,12 +1,14 @@
--- Database initialization script for Social Network
--- This script will be executed automatically when the PostgreSQL container starts
+-- inicialización de la base de datos para la red social
+-- se ejecutará automáticamente al iniciar el contenedor PostgreSQL.
 
--- Create database if not exists (handled by Docker environment variables)
+-- Crear la base de datos si no existe 
+-- (gestionado por variables de entorno de Docker).
 
--- The tables will be created by Prisma migrations
--- This file can be used for additional database configuration if needed
+-- Las tablas se crearán mediante migraciones de Prisma.
+-- Este archivo se puede utilizar para configurar la base de datos si es necesario.
 
--- Create extensions if needed
+--Crear extensiones si es necesario
+
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
--- You can add any additional SQL commands here
+

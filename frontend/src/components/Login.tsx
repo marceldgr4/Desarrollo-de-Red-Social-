@@ -30,12 +30,12 @@ const Login: React.FC = () => {
   return (
     <div className="login-container">
       <div className="login-card">
-        <h2>🌐 Social Network</h2>
+        <h2>Red Social</h2>
         <form onSubmit={handleSubmit}>
           {error && <div className="error-message">{error}</div>}
 
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">Usuario</label>
             <input
               id="username"
               type="text"
@@ -47,7 +47,7 @@ const Login: React.FC = () => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">contraseña</label>
             <input
               id="password"
               type="password"
@@ -69,11 +69,11 @@ const Login: React.FC = () => {
         </form>
 
         <div className="test-credentials">
-          <h4>Test Credentials:</h4>
-          <p><strong>Username:</strong> user1</p>
-          <p><strong>Password:</strong> password123</p>
+          <h4>Credenciales de prueba:</h4>
+          <p><strong>Usuario:</strong> user1</p>
+          <p><strong>contraseña:</strong> password123</p>
           <p style={{ marginTop: '0.5rem', fontSize: '0.85rem', color: '#999' }}>
-            Other users: user2, user3, user4, user5 (same password)
+            Otros usuarios: user2, user3,(misma contraseña)
           </p>
         </div>
       </div>

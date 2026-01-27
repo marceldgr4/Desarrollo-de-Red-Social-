@@ -60,7 +60,7 @@ app.get('/health', (req, res) => {
 
 // Listen on 0.0.0.0 to accept connections from outside the container
 app.listen(PORT, '0.0.0.0', () => {
-  console.log(`🚀 Auth Service running on port ${PORT}`);
-  console.log(`📚 Swagger documentation available at http://localhost:${PORT}/api-docs`);
-  console.log(`🌐 Server listening on 0.0.0.0:${PORT} (accessible via Docker port mapping)`);
+  console.log(` Auth Service running on port ${PORT}`);
+  console.log(` Swagger documentation available at http://localhost:${PORT}/api-docs`);
+  console.log(` Server listening on 0.0.0.0:${PORT} (accessible via Docker port mapping)`);
 });
