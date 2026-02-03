@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
-const JWT_SECRET = process.env.JWT_SECRET || 'mi_secreto_super_seguro_2024';
+const JWT_SECRET = process.env.JWT_SECRET || 'mi_secreto_super_seguro_2026';
 
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
@@ -12,8 +12,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     // Validate input
     if (!username || !password) {
-      res.status(400).json({ 
-        error: 'Username and password are required' 
+      res.status(400).json({
+        error: 'Username and password are required'
       });
       return;
     }
@@ -30,27 +30,29 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
 
     if (!user) {
-      res.status(401).json({ 
-        error: 'Invalid credentials' 
+      res.status(401).json({
+        error: 'Invalid credentials'
       });
       return;
     }
 
-    // Verify password
-    const isValidPassword = await bcrypt.compare(password, user.password);
-    
+    // Verify password  
+    //password: await bcrypt.hash(password123, 10);
+    console.log(`Login attempt for ${username}: '${password}' vs DB '${user.password}'`);
+    const isValidPassword = password === user.password;
+
     if (!isValidPassword) {
-      res.status(401).json({ 
-        error: 'Invalid credentials' 
+      res.status(401).json({
+        error: 'Invalid credentials'
       });
       return;
     }
 
     // Generate JWT token
     const token = jwt.sign(
-      { 
-        userId: user.id, 
-        username: user.username 
+      {
+        userId: user.id,
+        username: user.username
       },
       JWT_SECRET,
       { expiresIn: '24h' }
@@ -68,8 +70,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     });
   } catch (error) {
     console.error('Login error:', error);
-    res.status(500).json({ 
-      error: 'Internal server error' 
+    res.status(500).json({
+      error: 'Internal server error'
     });
   }
 };

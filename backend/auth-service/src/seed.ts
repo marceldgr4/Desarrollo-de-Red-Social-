@@ -6,34 +6,34 @@ const prisma = new PrismaClient();
 async function main() {
   console.log('Starting seed...');
 
-  
+
   const users = [
     {
       username: 'user1',
       email: 'user1@example.com',
-      password: await bcrypt.hash('password123', 10),
+      password: 'password123',
     },
     {
       username: 'user2',
       email: 'user2@example.com',
-      password: await bcrypt.hash('password123', 10),
+      password: 'password123',
     },
     {
       username: 'user3',
       email: 'user3@example.com',
-      password: await bcrypt.hash('password123', 10),
+      password: 'password123',
     },
-  
+
   ];
 
   const existingUsers = await prisma.user.findMany();
-  
+
   if (existingUsers.length > 0) {
     console.log(' Users already seeded, skipping...');
     return;
   }
 
- 
+
   for (const userData of users) {
     await prisma.user.create({
       data: {
@@ -51,7 +51,7 @@ async function main() {
   console.log(`Created ${users.length} users with initial posts`);
   console.log('\nTest credentials:');
   console.log('Username: user1 | Password: password123');
- 
+
 }
 
 main()
