@@ -8,13 +8,6 @@ import './App.css';
 const App: React.FC = () => {
   const { token, logout, user } = useAuthStore();
 
-  useEffect(() => {
-  
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      useAuthStore.getState().setToken(storedToken);
-    }
-  }, []);
 
   if (!token) {
     return <Login />;
