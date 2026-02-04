@@ -17,7 +17,7 @@ const PostsList: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
-  const { token } = useAuthStore();
+  const { token, user } = useAuthStore();
 
   const fetchPosts = async () => {
     if (!token) return;
@@ -31,6 +31,41 @@ const PostsList: React.FC = () => {
       setError(err.response?.data?.error || 'Failed to load posts');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleEdit = async (postId: number) => {
+    const postToEdit = posts.find((p) => p.id === postId);
+    if (!postToEdit) return;
+
+    const newMessage = window.prompt('Editar post:', postToEdit.message);
+    if (newMessage === null || newMessage === postToEdit.message) return;
+
+    try {
+      if (token) {
+        await postsAPI.updatePost(token, postId, newMessage);
+        // Refresh posts after update
+        fetchPosts();
+      }
+    } catch (err) {
+      alert('Error updating post');
+      console.error(err);
+    }
+  };
+
+  const handleDelete = async (postId: number) => {
+    const confirmed = window.confirm('¿Estás seguro de que quieres eliminar este post?');
+    if (!confirmed) return;
+
+    try {
+      if (token) {
+        await postsAPI.deletePost(token, postId);
+        // Refresh posts after delete
+        fetchPosts();
+      }
+    } catch (err) {
+      alert('Error deleting post');
+      console.error(err);
     }
   };
 
@@ -49,7 +84,7 @@ const PostsList: React.FC = () => {
     });
   };
 
- 
+
   const refreshPosts = () => {
     fetchPosts();
   };
@@ -96,7 +131,19 @@ const PostsList: React.FC = () => {
                 <div className="post-author">@{post.user.username}</div>
                 <div className="post-date">{formatDate(post.createdAt)}</div>
               </div>
+
               <div className="post-message">{post.message}</div>
+
+              {user && user.id === post.user.id && (
+                <div className="post-actions">
+                  <button onClick={() => handleEdit(post.id)} className="btn btn-secondary">
+                    Editar
+                  </button>
+                  <button onClick={() => handleDelete(post.id)} className="btn btn-danger">
+                    Eliminar
+                  </button>
+                </div>
+              )}
             </div>
           ))}
         </div>

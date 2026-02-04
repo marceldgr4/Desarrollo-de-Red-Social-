@@ -53,4 +53,28 @@ export const postsAPI = {
     );
     return response.data;
   },
+  updatePost: async (token: string, postId: number, message: string) => {
+    const response = await postsService.put(
+      `/api/posts/${postId}`,
+      { message },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  },
+
+  deletePost: async (token: string, postId: number) => {
+    const response = await postsService.delete(
+      `/api/posts/${postId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return response.data;
+  },
 };
